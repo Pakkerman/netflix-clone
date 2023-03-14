@@ -1,18 +1,59 @@
+import axios from "axios";
 import Input from "@/components/Input";
 import { useCallback, useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
+
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 export default function Auth() {
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-
   const [variant, setVariant] = useState("login");
 
   const toggleVariant = useCallback(() => {
     setVariant((currentVariant) =>
       currentVariant === "login" ? "register" : "login"
     );
+    setEmail("");
+    setName("");
+    setPassword("");
   }, []);
+
+  const login = useCallback(async () => {
+    try {
+      await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+        callbackUrl: "/",
+      });
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, password, router]);
+
+  // the video uses useCallback(), dont really understand why. So I try use a regular async function and it works
+  // TODO: Dig into docs to find out why or keep watching the video and maybe it will make sense when other
+  // features are implemented
+  const register = useCallback(async () => {
+    try {
+      await axios.post("/api/register", {
+        email,
+        name,
+        password,
+      });
+
+      login();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, name, password, login]);
 
   return (
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-cover bg-fixed bg-center bg-no-repeat">
@@ -49,9 +90,26 @@ export default function Auth() {
                 value={password}
               />
             </div>
-            <button className="mt-10 w-full rounded-md bg-red-600 py-3 text-white transition hover:bg-red-700">
+            <button
+              onClick={variant === "login" ? login : register}
+              className="mt-10 w-full rounded-md bg-red-600 py-3 text-white transition hover:bg-red-700"
+            >
               {variant === "login" ? "Login" : "Sign Up"}
             </button>
+            <div className="mt-8 flex flex-row items-center justify-center gap-4">
+              <div
+                onClick={() => signIn("google", { callbackUrl: "/" })}
+                className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-white transition hover:opacity-80"
+              >
+                <FcGoogle size={30} />
+              </div>
+              <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-white transition hover:opacity-80">
+                <FaGithub
+                  onClick={() => signIn("github", { callbackUrl: "/" })}
+                  size={30}
+                />
+              </div>
+            </div>
             <p className="mt-12 text-neutral-500">
               {variant === "login"
                 ? "First time using Netflix?"
