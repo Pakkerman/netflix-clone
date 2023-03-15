@@ -2,17 +2,14 @@ import axios from "axios";
 import Input from "@/components/Input";
 import { useCallback, useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
 
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
 export default function Auth() {
-  const router = useRouter();
-
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("t");
   const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("t");
   const [variant, setVariant] = useState("login");
 
   const toggleVariant = useCallback(() => {
@@ -29,14 +26,12 @@ export default function Auth() {
       await signIn("credentials", {
         email,
         password,
-        redirect: false,
-        callbackUrl: "/",
+        callbackUrl: "/profiles",
       });
-      router.push("/");
     } catch (error) {
       console.log(error);
     }
-  }, [email, password, router]);
+  }, [email, password]);
 
   // the video uses useCallback(), dont really understand why. So I try use a regular async function and it works
   // TODO: Dig into docs to find out why or keep watching the video and maybe it will make sense when other
@@ -98,14 +93,14 @@ export default function Auth() {
             </button>
             <div className="mt-8 flex flex-row items-center justify-center gap-4">
               <div
-                onClick={() => signIn("google", { callbackUrl: "/" })}
-                className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-white transition hover:opacity-80"
+                onClick={() => signIn("google", { callbackUrl: "/profiles" })}
+                className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl bg-white opacity-80 transition hover:opacity-100"
               >
                 <FcGoogle size={30} />
               </div>
-              <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-white transition hover:opacity-80">
+              <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl bg-white opacity-80 transition hover:opacity-100">
                 <FaGithub
-                  onClick={() => signIn("github", { callbackUrl: "/" })}
+                  onClick={() => signIn("github", { callbackUrl: "/profiles" })}
                   size={30}
                 />
               </div>
