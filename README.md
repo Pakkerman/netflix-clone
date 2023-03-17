@@ -1,3 +1,7 @@
+## [Netflix-clone](https://netflix-clone-pakkerman.vercel.app/) click to view site on Vercel.com.
+
+#
+
 # Information
 
 This is a personal project that is a clone of Netflix, a popular streaming service. Includes most of the main features of the original site.
@@ -14,3 +18,5 @@ This is a personal project that is a clone of Netflix, a popular streaming servi
 - Tailwindcss
 - Prisma
 - MongoDB
+
+and deplyed on Vercel.com
