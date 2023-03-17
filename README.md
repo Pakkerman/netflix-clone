@@ -1,14 +1,18 @@
-## [Netflix-clone](https://netflix-clone-pakkerman.vercel.app/) click to view site on Vercel.com.
+# Netflix Clone Fullstack Webapp
 
-#
+- [Netflix-clone](https://netflix-clone-pakkerman.vercel.app/) click to view site on Vercel.com
 
-# Information
+## Information
 
 This is a personal project that is a clone of Netflix, a popular streaming service. Includes most of the main features of the original site.
+
+#
 
 ## Additional Feature
 
 - User Authentication, Google and Github OAuth
+
+#
 
 ## Stack Info
 
@@ -20,3 +24,7 @@ This is a personal project that is a clone of Netflix, a popular streaming servi
 - MongoDB
 
 and deplyed on Vercel.com
+
+## Author
+
+[Pakkerman](https://github.com/Pakkerman) on Github
