@@ -1,4 +1,4 @@
-# Netflix Clone Fullstack Webapp
+# Netflix Clone with [Next.js](https://nextjs.org/)
 
 - [Netflix-clone](https://netflix-clone-pakkerman.vercel.app/) click to view site on Vercel.com
 
@@ -16,7 +16,7 @@ This is a personal project that is a clone of Netflix, a popular streaming servi
 
 ## Stack Info
 
-- Nextjs
+- Next.js
 - React
 - TypeScript
 - Tailwindcss
