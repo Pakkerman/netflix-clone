@@ -7,9 +7,9 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
 export default function Auth() {
-  const [email, setEmail] = useState("t");
+  const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [password, setPassword] = useState("t");
+  const [password, setPassword] = useState("");
   const [variant, setVariant] = useState("login");
 
   const toggleVariant = useCallback(() => {

@@ -20,7 +20,7 @@ const Watch = () => {
           className="cursor-pointer text-white"
           size={40}
         />
-        <p className="text-1xl font-bold text-white md:text-3xl">
+        <p className="text-1xl font-bold text-gray-300 md:text-3xl">
           Watching: <span className="font-light">{data?.title}</span>
         </p>
       </nav>
