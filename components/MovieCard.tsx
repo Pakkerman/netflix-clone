@@ -1,7 +1,9 @@
 import React from "react";
 import { BsFillPlayFill } from "react-icons/bs";
+import { AiOutlineInfo } from "react-icons/ai";
 import FavoriteButton from "./FavoriteButton";
 import { useRouter } from "next/router";
+import useInfoModal from "@/hooks/useInfoModal";
 
 interface MovieCardProps {
   data: Record<string, any>;
@@ -9,6 +11,8 @@ interface MovieCardProps {
 
 const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
   const router = useRouter();
+  const { openModal } = useInfoModal();
+
   return (
     <div className="col-span group relative h-[12vw] bg-zinc-900">
       <img
@@ -31,11 +35,17 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
               <BsFillPlayFill size={30} />
             </div>
             <FavoriteButton movieId={data.id} />
+            <div className="group/item border-whtie ml-auto flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border-2 transition hover:border-neutral-300 lg:h-10 lg:w-10">
+              <AiOutlineInfo
+                onClick={() => openModal(data?.id)}
+                size={25}
+                className="text-white group-hover/item:text-neutral-300"
+              />
+            </div>
           </div>
           <p className="mt-4 font-semibold text-green-400">
             New <span className="text-white">2023</span>
           </p>
-
           <div className="mt-4 flex flex-row items-center gap-2 ">
             <p className="text-[10px] text-white lg:text-sm">{data.duration}</p>
           </div>

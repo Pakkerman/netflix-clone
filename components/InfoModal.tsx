@@ -19,6 +19,19 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
     setIsVisible(!!visible);
   }, [visible]);
 
+  // TODO: try to implement close window by click on the space outside of info modal
+  // useEffect(() => {
+  //   function close() {
+  //     if (!isVisible) return;
+  //     handleClose();
+  //   }
+  //   document.querySelector("#info-window")?.addEventListener("click", close);
+  //   return () =>
+  //     document
+  //       .querySelector("#info-window")
+  //       ?.removeEventListener("click", close);
+  // }, [isVisible]);
+
   const handleClose = useCallback(() => {
     setIsVisible(false);
     setTimeout(() => {
@@ -29,7 +42,10 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-black bg-opacity-80 transition duration-300">
+    <div
+      id="info-window"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-black bg-opacity-80 transition duration-300"
+    >
       <div className="relative mx-auto w-auto max-w-3xl overflow-hidden rounded-md">
         <div
           className={`${
@@ -74,6 +90,3 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
 };
 
 export default InfoModal;
-
-const isVisible = "true";
-console.log(!!isVisible, typeof !!isVisible);
